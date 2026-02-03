@@ -270,9 +270,16 @@
             filter: blur(20px);
         }
         
-        .profile-image i {
-            font-size: 10rem;
-            color: rgba(255, 255, 255, 0.9);
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: inherit;
+            transition: transform 0.5s ease;
+        }
+        
+        .profile-image:hover .profile-img {
+            transform: scale(1.05);
         }
         
         .floating-icons {
@@ -636,11 +643,11 @@
             color: var(--gray-color);
         }
         
-        /* Contacto */
+        /* Contacto - Sin formulario */
         .contact-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
         
         .contact-info {
@@ -649,6 +656,9 @@
             padding: 40px;
             box-shadow: var(--shadow);
             transition: var(--transition);
+            width: 100%;
+            max-width: 800px;
+            text-align: center;
         }
         
         .contact-info:hover {
@@ -656,47 +666,67 @@
             box-shadow: var(--shadow-hover);
         }
         
-        .contact-form {
-            background-color: white;
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-        }
-        
-        .contact-form:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-hover);
-        }
-        
-        .contact-form h3 {
+        .contact-info h3 {
             color: var(--dark-color);
-            margin-bottom: 25px;
+            margin-bottom: 40px;
             font-size: 1.8rem;
         }
         
-        .form-group {
-            margin-bottom: 25px;
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
         }
         
-        .form-control {
-            width: 100%;
-            padding: 15px;
-            border: 2px solid var(--light-gray);
-            border-radius: 10px;
-            font-family: 'Poppins', sans-serif;
-            font-size: 1rem;
+        .contact-item-large {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 25px;
+            background-color: rgba(138, 79, 255, 0.05);
+            border-radius: 15px;
             transition: var(--transition);
         }
         
-        .form-control:focus {
-            outline: none;
-            border-color: var(--primary-color);
+        .contact-item-large:hover {
+            background-color: rgba(138, 79, 255, 0.1);
+            transform: translateY(-5px);
         }
         
-        textarea.form-control {
-            min-height: 150px;
-            resize: vertical;
+        .contact-item-large i {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .contact-item-large h4 {
+            font-size: 1.2rem;
+            color: var(--dark-color);
+            margin-bottom: 10px;
+        }
+        
+        .contact-item-large p {
+            color: var(--gray-color);
+        }
+        
+        .contact-cta {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid var(--light-gray);
+        }
+        
+        .contact-cta p {
+            color: var(--gray-color);
+            margin-bottom: 20px;
+            font-size: 1.1rem;
         }
         
         /* Footer */
@@ -811,6 +841,10 @@
             .personal-info {
                 position: static;
             }
+            
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
         }
         
         @media (max-width: 768px) {
@@ -861,6 +895,10 @@
             .cta-buttons {
                 justify-content: center;
             }
+            
+            .contact-info {
+                padding: 30px 20px;
+            }
         }
         
         @media (max-width: 576px) {
@@ -877,10 +915,6 @@
                 height: 250px;
             }
             
-            .profile-image i {
-                font-size: 8rem;
-            }
-            
             .floating-icon {
                 width: 40px;
                 height: 40px;
@@ -895,8 +929,7 @@
             .about-text,
             .skill-category,
             .timeline-content,
-            .contact-info,
-            .contact-form {
+            .contact-info {
                 padding: 25px;
             }
         }
@@ -999,7 +1032,10 @@
                 <div class="hero-image">
                     <div class="profile-container">
                         <div class="profile-image">
-                            <i class="fas fa-user-tie"></i>
+                            <img src="https://cdn.discordapp.com/attachments/1399170097737891933/1468088462229110897/WhatsApp_Image_2026-02-03_at_12.14.53_AM.jpeg?ex=6982bf6d&is=69816ded&hm=68c24f9d36c5463ac33cf96a6d02a938c90854a1e5f138b7ee8ca2e6ba3e061b&" 
+                                 alt="Luana Bell Agüero Arce" 
+                                 class="profile-img"
+                                 onerror="this.src='https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=761&q=80'">
                         </div>
                         
                         <div class="floating-icons">
@@ -1052,7 +1088,7 @@
                         <i class="fas fa-envelope"></i>
                         <div class="info-content">
                             <h4>Email</h4>
-                            <p>luanabellaguero@gmail.com</p>
+                            <p>luaagueroo123@gmail.com</p>
                         </div>
                     </div>
                     
@@ -1233,7 +1269,7 @@
         </div>
     </section>
     
-    <!-- Sección Contacto -->
+    <!-- Sección Contacto (sin formulario) -->
     <section id="contact" class="contact">
         <div class="container">
             <div class="section-header">
@@ -1243,65 +1279,40 @@
             
             <div class="contact-container">
                 <div class="contact-info animate-on-scroll">
-                    <h3 style="color: var(--dark-color); margin-bottom: 30px; font-size: 1.8rem;">Información de Contacto</h3>
+                    <h3>Información de Contacto</h3>
                     
-                    <div class="info-item">
-                        <i class="fas fa-phone-alt"></i>
-                        <div class="info-content">
+                    <div class="contact-grid">
+                        <div class="contact-item-large">
+                            <i class="fas fa-phone-alt"></i>
                             <h4>Teléfono</h4>
                             <p>+595 976 549 410</p>
                         </div>
-                    </div>
-                    
-                    <div class="info-item">
-                        <i class="fas fa-envelope"></i>
-                        <div class="info-content">
+                        
+                        <div class="contact-item-large">
+                            <i class="fas fa-envelope"></i>
                             <h4>Email</h4>
-                            <p>luanabellaguero@gmail.com</p>
+                            <p>luaagueroo123@gmail.com</p>
                         </div>
-                    </div>
-                    
-                    <div class="info-item">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <div class="info-content">
+                        
+                        <div class="contact-item-large">
+                            <i class="fas fa-map-marker-alt"></i>
                             <h4>Ubicación</h4>
                             <p>Paraguay</p>
                         </div>
-                    </div>
-                    
-                    <div class="info-item">
-                        <i class="fas fa-user"></i>
-                        <div class="info-content">
+                        
+                        <div class="contact-item-large">
+                            <i class="fas fa-user"></i>
                             <h4>Disponibilidad</h4>
                             <p>Busco oportunidades profesionales</p>
                         </div>
                     </div>
-                </div>
-                
-                <div class="contact-form animate-on-scroll">
-                    <h3>Enviar Mensaje</h3>
                     
-                    <form id="contactForm">
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Tu nombre" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <input type="email" class="form-control" placeholder="Tu email" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Asunto" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <textarea class="form-control" placeholder="Tu mensaje" required></textarea>
-                        </div>
-                        
-                        <button type="submit" class="btn btn-primary" style="width: 100%;">
-                            <i class="fas fa-paper-plane"></i> Enviar Mensaje
-                        </button>
-                    </form>
+                    <div class="contact-cta">
+                        <p>¿Interesado en colaborar o tienes alguna oportunidad profesional?</p>
+                        <a href="mailto:luaagueroo123@gmail.com" class="btn btn-primary">
+                            <i class="fas fa-paper-plane"></i> Enviar un correo
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1328,7 +1339,7 @@
                     <a href="#" class="social-link">
                         <i class="fab fa-whatsapp"></i>
                     </a>
-                    <a href="mailto:luanabellaguero@gmail.com" class="social-link">
+                    <a href="mailto:luaagueroo123@gmail.com" class="social-link">
                         <i class="fas fa-envelope"></i>
                     </a>
                 </div>
@@ -1500,26 +1511,6 @@
                 navLinks.classList.remove('active');
                 mobileToggle.innerHTML = '<i class="fas fa-bars"></i>';
             });
-        });
-        
-        // Formulario de contacto
-        const contactForm = document.getElementById('contactForm');
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Simular envío del formulario
-            const submitButton = this.querySelector('button[type="submit"]');
-            const originalText = submitButton.innerHTML;
-            
-            submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
-            submitButton.disabled = true;
-            
-            setTimeout(() => {
-                alert('¡Mensaje enviado con éxito! Gracias por contactarme, me pondré en contacto contigo pronto.');
-                contactForm.reset();
-                submitButton.innerHTML = originalText;
-                submitButton.disabled = false;
-            }, 1500);
         });
         
         // Inicializar animaciones y partículas
